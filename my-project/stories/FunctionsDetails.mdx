@@ -1,0 +1,165 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import Button from "./AuthButton.js";
+
+<Meta title="Authentication/ Functions " />
+
+
+### `signIn(email: string, password: string): Promise<void>`
+
+The `signIn` function is responsible for authenticating a user with their email and password. It is an asynchronous function that takes two parameters: `email` and `password`.
+
+#### Parameters
+- `email` (string): The email address associated with the user's account.
+- `password` (string): The user's password.
+
+#### Returns
+- A Promise that resolves with no specific value when the authentication process is completed.
+
+#### Function Behavior
+1. Sets the `isLoading` state to `true` to indicate that the authentication process is in progress.
+2. Attempts to sign in the user by calling the `signInWithEmailAndPassword` function provided by Firebase Authentication.
+3. If the sign-in operation is successful, it sets `isLoading` to `false`, indicating that the operation is complete.
+4. If there is an error during the sign-in process, the function sets an error message using the `setError` function. The error message is set to "username or password may be wrong."
+5. Finally, the function sets `isLoading` to `false` to conclude the authentication process.
+
+#### Example
+```javascript
+try {
+  // Attempt to sign in with email and password
+  await signIn(email, password);
+  // If successful, the user is now authenticated.
+} catch (error) {
+  // Handle any authentication errors here
+  setError("username or password may be wrong");
+}
+```
+
+
+### `signUp(email: string, password: string): Promise<void>`
+
+The `signUp` function is responsible for registering a new user with their email and password. It is an asynchronous function that takes two parameters: `email` and `password`.
+
+#### Parameters
+- `email` (string): The email address the user wants to associate with their new account.
+- `password` (string): The password chosen by the user for their new account.
+
+#### Returns
+- A Promise that resolves with no specific value when the user registration process is completed.
+
+#### Function Behavior
+1. Sets the `isLoading` state to `true` to indicate that the registration process is in progress.
+2. Attempts to create a new user account by calling the `createUserWithEmailAndPassword` function provided by Firebase Authentication. This function creates a new user account using the provided email and password.
+3. After creating the user account, the function sends an email verification request to the newly registered user by calling `sendEmailVerification(auth.currentUser)`. This email verification step is essential for confirming the user's identity.
+4. Logs a message to the console indicating that the verification email has been sent.
+5. If any errors occur during the registration process, they are caught, and the function logs the error and sets the `error` state to "Try Again."
+6. Finally, the function sets `isLoading` to `false` to conclude the registration process.
+
+#### Example
+```javascript
+try {
+  // Attempt to create a new user account with email and password
+  await signUp(email, password);
+  // User account created and email verification sent.
+} catch (error) {
+  // Handle any registration errors here
+  console.log("error", error);
+  setError("Try Again");
+}
+```
+
+
+
+### `logOut(): Promise<void>`
+
+The `logOut` function is responsible for allowing a currently authenticated user to log out of their account. This function is asynchronous and doesn't require any parameters.
+
+#### Returns
+- A Promise that resolves with no specific value when the user logs out successfully.
+
+#### Function Behavior
+1. Sets the `isLoading` state to `true` to indicate that the log-out process is in progress.
+2. Invokes the `signOut` function provided by Firebase Authentication to log the user out of their account.
+3. After successfully signing out, the function calls `clearCart()` to clear the user's shopping cart or any relevant session data.
+4. Sets the `isLoading` state to `false` to conclude the log-out process.
+
+#### Example
+```javascript
+try {
+  // Attempt to log the user out
+  await logOut();
+  // User successfully logged out.
+} catch (error) {
+  // Handle any log-out errors here
+  console.error(error);
+  setIsLoading(false);
+}
+```
+
+
+    ### `changePassword(password: string): Promise<void>`
+
+The `changePassword` function allows a user to change their password. It is asynchronous and requires the new password as a parameter.
+
+#### Parameters
+- `password` (string): The new password to set for the user's account.
+
+#### Returns
+- A Promise that resolves with no specific value when the password change is successful.
+
+#### Function Behavior
+1. Sets the `isLoading` state to `true` to indicate that the password change process is in progress.
+2. Invokes the `updatePassword` function provided by Firebase Authentication to update the user's password to the new value.
+3. After successfully changing the password, the function sets the `isLoading` state to `false` to conclude the process.
+
+#### Example
+```javascript
+try {
+  // Attempt to change the user's password
+  const newPassword = "new-password123"; // Replace with the new password
+  await changePassword(newPassword);
+  // Password successfully changed.
+} catch (error) {
+  // Handle any password change errors here
+  console.error(error);
+  setIsLoading(false);
+}
+```
+
+### `forgetPassword(email: string): Promise<void>`
+
+The `forgetPassword` function allows a user to request a password reset for their account. It is asynchronous and requires the user's email address as a parameter.
+
+#### Parameters
+- `email` (string): The email address associated with the user's account.
+
+#### Returns
+- A Promise that resolves with no specific value after sending the password reset email.
+
+#### Function Behavior
+1. Checks if the `email` parameter is provided. If it's empty or undefined, it sets an error message using the `setError` function to inform the user to enter their email address and returns, effectively canceling the operation.
+
+2. If the `email` is provided, the function attempts to send a password reset email using the `sendPasswordResetEmail` function provided by Firebase Authentication. This sends a password reset link to the user's email address.
+
+3. Upon successful email delivery, it sets an informative message using the `setError` function to notify the user that the password reset link has been sent to their email.
+
+4. If any errors occur during the process, they are caught and logged to the console, and an error message is set using `setError` to inform the user to try again.
+
+#### Example
+```javascript
+try {
+  // Attempt to send a password reset email
+  const userEmail = "user@example.com"; // Replace with the user's email
+  await forgetPassword(userEmail);
+  // Password reset email sent successfully.
+} catch (error) {
+  // Handle any errors here
+  console.error(error);
+}
+```
+
+
+
+
+
+
+
