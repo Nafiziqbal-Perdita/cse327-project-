@@ -1,7 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+node_modules/
 
 # dependencies
-/node_modules
 /.pnp
 .pnp.js
 
@@ -64,6 +64,7 @@ yarn-error.log*
 !globals.css
 !button.css 
 !page.css
+!AuthUI.module.css
 
 
 
