@@ -9,8 +9,6 @@ const config = {
     "@storybook/addon-essentials",
     "@storybook/addon-onboarding",
     "@storybook/addon-interactions",
-    "@storybook/addon-actions",
-    "@storybook/addon-docs"
   ],
   framework: {
     name: "@storybook/nextjs",
