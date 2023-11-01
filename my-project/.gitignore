@@ -1,5 +1,4 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-node_modules/
 
 # dependencies
 /node_modules
@@ -50,10 +49,21 @@ yarn-error.log*
 
 # Exclude all JavaScript files except AuthUI.js
 *.js
+!AuthUI.js
+!database_functions.js
+!firebase.js
+!useFirebaseAuth.js
+!AuthButton.js 
+!Page.stories.js
+!Header.stories.js
+!Button.stories.js
 
 
 # Exclude all CSS files except globals.css
 *.css
+!globals.css
+!button.css 
+!page.css
 
 
 
