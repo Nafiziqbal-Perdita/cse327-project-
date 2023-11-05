@@ -27,7 +27,6 @@ const useFirebaseAuth = () => {
     return () => unsubscribe();
   }, []);
 
-//sign in method
   const signIn = async (email, password) => {
     setIsLoading(true);
     try {

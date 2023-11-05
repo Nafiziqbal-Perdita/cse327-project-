@@ -63,7 +63,6 @@ const AuthUI = ({ InnerComponent }) => {
   if (isLoading) {
     return <div className={styles.loading}>Loading...</div>;
   }
-  //should verify before redirecting
 
   if (user && user.emailVerified) {
     console.log("Get Access to the Home page");
