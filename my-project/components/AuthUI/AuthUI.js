@@ -64,6 +64,9 @@ const AuthUI = ({ InnerComponent }) => {
     return <div className={styles.loading}>Loading...</div>;
   }
 
+
+//it will verified the user is verified with their mail or not
+
   if (user && user.emailVerified) {
     console.log("Get Access to the Home page");
     return <InnerComponent user={user} />;
