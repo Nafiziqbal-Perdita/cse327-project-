@@ -1,0 +1,20 @@
+import useFirebaseAuth from "../hooks/useFirebaseAuth";
+import { useState } from "react";
+import AuthUI from "../components/AuthUI/AuthUI";
+
+import YourInnerComponent from '../components/AuthUI/AuthUI';
+<Meta title="AuthUI" component={AuthUI} />
+
+# AuthUI
+
+`AuthUI` is a React component that provides user authentication functionality.
+
+## Props
+
+- `InnerComponent`: (Function) A component to render when the user is authenticated.
+
+## Usage
+
+<Story name="Example">
+  {() => <AuthUI InnerComponent={YourInnerComponent} />}
+</Story>
